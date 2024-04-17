@@ -13,8 +13,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 43 100% 54%;
+    --primary-foreground: 0 0% 0%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -22,7 +22,8 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 173 100% 39%;
+    --accent-100: 172 86% 91%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -31,18 +32,19 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
+    --danger: 13 94% 57%;
 
     --radius: 0.5rem;
   }
 
-  .dark {
+  /* .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 43 100% 54%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 210 40% 98%;
@@ -63,7 +65,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-  }
+  } */
 }
 
 @layer base {
@@ -71,27 +73,21 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-accent-100 text-foreground p-2 min-h-dvh;
+  }
+  svg {
+    @apply w-5;
   }
 }
 
-.btn:hover:after {
-  bottom: -6px;
-}
-.btn:after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  /* box-sizing: border-box; */
-  /* flex: 1; */
-  /* flex-basis: 100%; */
-  /* width: 100px; */
-  position: absolute;
-  bottom: -4px;
-  border: 2px solid black;
-  border-radius: 10px;
-  box-sizing: content-box;
-  z-index: -1;
+@layer utilities {
+  *:has(> .shadowed) {
+    isolation: isolate;
+  }
+  .shadowed {
+    @apply relative;
+  }
+  .shadowed:before {
+    @apply block content-[''] w-full h-full bg-foreground absolute z-[-1] rounded-[inherit] top-1;
+  }
 }
