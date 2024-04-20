@@ -81,11 +81,11 @@
 }
 
 @layer utilities {
-  *:has(> .shadowed) {
-    isolation: isolate;
-  }
   .shadowed {
     @apply relative;
+  }
+  *:has(> .shadowed) {
+    @apply isolate;
   }
   .shadowed:before {
     @apply block content-[''] w-full h-full bg-foreground absolute z-[-1] rounded-[inherit] top-1;
